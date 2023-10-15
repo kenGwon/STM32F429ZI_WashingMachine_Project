@@ -1,0 +1,3 @@
+../Core/Src/dcmotor.c:3:6:DCmotor_Forward_Rotate	8	static
+../Core/Src/dcmotor.c:9:6:DCmotor_Backward_Rotate	8	static
+../Core/Src/dcmotor.c:15:6:DCmotor_Break	8	static

@@ -1,0 +1,7 @@
+washing_machine.c:11:6:WashingMachine_Init	1
+washing_machine.c:24:6:WashingMachine_Terminate	1
+washing_machine.c:37:6:WashingMachine_Processing	1
+washing_machine.c:46:6:Wash_Laundry	1
+washing_machine.c:54:6:Rinse_Laundry	1
+washing_machine.c:62:6:Spin_Laundry	1
+washing_machine.c:72:6:Check_Lid_Open	1

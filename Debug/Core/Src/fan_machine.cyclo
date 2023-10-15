@@ -1,0 +1,8 @@
+fan_machine.c:19:6:Fan_Processing	3
+fan_machine.c:42:6:Fan_Manual_Control	12
+fan_machine.c:159:6:Fan_Auto_Control	11
+fan_machine.c:242:6:Clear_Fan_LCD_Display	1
+fan_machine.c:258:6:Fan_LCD_Display	4
+fan_machine.c:313:6:Fan_Rotate_Direction_LED_Control	4
+fan_machine.c:338:6:Fan_LEDbar_Control	3
+fan_machine.c:357:10:Get_Current_ChannelControlRegister_Value	1

@@ -1,0 +1,2 @@
+../Core/Src/ultrasonic.c:12:6:Ultrasonic_Processing	32	static
+../Core/Src/ultrasonic.c:42:6:Ultrasonic_Trigger	8	static
