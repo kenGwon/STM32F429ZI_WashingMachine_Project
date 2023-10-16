@@ -22,3 +22,14 @@ void Servomotor_Test(void)
 	// 서보모터 데이터 시트에서 1.5ms동안 유지되는 high 신호는 90도 회전으로 본다. ==> 0.00002 * 75개
 	// 서보모터 데이터 시트에서 1ms동안 유지되는 high 신호는 0도 회전으로 본다. ==> 0.00002 * 50개
 }
+
+void open_WashingMachine_Lid(void)
+{
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 50);
+}
+
+void close_WashingMachine_Lid(void)
+{
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 100);
+}
+

@@ -1,1 +1,3 @@
 servomotor.c:8:6:Servomotor_Test	1
+servomotor.c:26:6:open_WashingMachine_Lid	1
+servomotor.c:31:6:close_WashingMachine_Lid	1

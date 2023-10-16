@@ -6,9 +6,14 @@ extern TIM_HandleTypeDef htim11;
 volatile uint32_t TIM10_10ms_counter_ledbar = 0; // for ledbar.c
 volatile uint32_t TIM10_10ms_counter_DHT11 = 0; // for DHT11.c
 volatile uint32_t TIM10_10ms_counter_ultrasonic = 0; // for ultrasonic.c
-volatile uint32_t TIM10_10ms_fan_auto_mode_remain_time_decrease = 0; // for dcmotor.c
-volatile uint32_t TIM10_10ms_fan_rotate_direction_led = 0; // for dcmotor.c
-volatile uint32_t TIM10_10ms_fan_lcd_display_clear = 0; // for dcmotor.c
+volatile uint32_t TIM10_10ms_fan_auto_mode_remain_time_decrease = 0; // for fan_machine.c
+volatile uint32_t TIM10_10ms_fan_rotate_direction_led = 0; // for fan_machine.c
+volatile uint32_t TIM10_10ms_fan_lcd_display_clear = 0; // for fan_machine.c
+volatile uint32_t TIM10_10ms_dcmotor_activate_time = 0; // for dcmotor.c
+
+volatile uint32_t TIM10_10ms_WM_wash_timer = 0;
+volatile uint32_t TIM10_10ms_WM_rinse_timer = 0;
+volatile uint32_t TIM10_10ms_WM_spin_timer = 0;
 
 volatile int32_t ultrasonic_distance; // for ultrasonic.c // 상승엣지부터 하강엣지까지 펄스가 몇번 카운트 되었는지 그 횟수를 담아둘 전역변수
 volatile uint8_t one_cycle_capture_finish_flag = 0; // for ultrasonic.c // 0은 초음파 거리 측정 미완 상태, 1은 초음파 거리 측정 완료 상태 [플래그변수]
@@ -20,6 +25,8 @@ volatile uint8_t rising_falling_edge_capture_flag = 0; // for ultrasonic.c // 0�
  */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	static uint8_t WM_forward_backward = 0;
+
 	// 1MHz로 분주되어 있는 TIM10이 10000번의 counter period를 채울때마다 콜백되어 변수들을 1씩 증가시킨다.(즉 10ms 타이머 기능을 함)
 	if (htim->Instance == TIM10)
 	{
@@ -29,6 +36,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		TIM10_10ms_fan_auto_mode_remain_time_decrease++;
 		TIM10_10ms_fan_rotate_direction_led++;
 		TIM10_10ms_fan_lcd_display_clear++;
+		TIM10_10ms_dcmotor_activate_time++;
+
+		TIM10_10ms_WM_wash_timer++;
+		TIM10_10ms_WM_rinse_timer++;
+		TIM10_10ms_WM_spin_timer++;
 	}
 }
 

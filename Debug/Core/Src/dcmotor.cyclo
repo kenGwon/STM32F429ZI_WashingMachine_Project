@@ -1,3 +1,5 @@
-dcmotor.c:3:6:DCmotor_Forward_Rotate	1
-dcmotor.c:9:6:DCmotor_Backward_Rotate	1
-dcmotor.c:15:6:DCmotor_Break	1
+dcmotor.c:10:6:DCmotor_Forward_Rotate	1
+dcmotor.c:20:6:DCmotor_Backward_Rotate	1
+dcmotor.c:29:6:DCmotor_Break	1
+dcmotor.c:35:6:DCmotor_Set_DutyCycle	1
+dcmotor.c:40:10:DCmotor_Get_DutyCycle	1

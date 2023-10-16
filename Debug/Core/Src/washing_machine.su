@@ -1,7 +1,9 @@
-../Core/Src/washing_machine.c:11:6:WashingMachine_Init	8	static
-../Core/Src/washing_machine.c:24:6:WashingMachine_Terminate	8	static
-../Core/Src/washing_machine.c:37:6:WashingMachine_Processing	4	static
-../Core/Src/washing_machine.c:46:6:Wash_Laundry	4	static
-../Core/Src/washing_machine.c:54:6:Rinse_Laundry	4	static
-../Core/Src/washing_machine.c:62:6:Spin_Laundry	4	static
-../Core/Src/washing_machine.c:72:6:Check_Lid_Open	4	static
+../Core/Src/washing_machine.c:34:6:WashingMachine_Init	8	static
+../Core/Src/washing_machine.c:52:6:WashingMachine_Terminate	8	static
+../Core/Src/washing_machine.c:67:6:WashingMachine_Processing	8	static
+../Core/Src/washing_machine.c:98:13:Idle_Mode_Laundry	8	static
+../Core/Src/washing_machine.c:127:13:Wash_Mode_Laundry	8	static
+../Core/Src/washing_machine.c:211:13:Rinse_Mode_Laundry	8	static
+../Core/Src/washing_machine.c:276:13:Spin_Mode_Laundry	8	static
+../Core/Src/washing_machine.c:355:13:Check_Lid_Open	4	static
+../Core/Src/washing_machine.c:363:13:WashingMachine_LCD_Display	48	static

@@ -1,7 +1,9 @@
-washing_machine.c:11:6:WashingMachine_Init	1
-washing_machine.c:24:6:WashingMachine_Terminate	1
-washing_machine.c:37:6:WashingMachine_Processing	1
-washing_machine.c:46:6:Wash_Laundry	1
-washing_machine.c:54:6:Rinse_Laundry	1
-washing_machine.c:62:6:Spin_Laundry	1
-washing_machine.c:72:6:Check_Lid_Open	1
+washing_machine.c:34:6:WashingMachine_Init	1
+washing_machine.c:52:6:WashingMachine_Terminate	1
+washing_machine.c:67:6:WashingMachine_Processing	5
+washing_machine.c:98:13:Idle_Mode_Laundry	4
+washing_machine.c:127:13:Wash_Mode_Laundry	11
+washing_machine.c:211:13:Rinse_Mode_Laundry	9
+washing_machine.c:276:13:Spin_Mode_Laundry	10
+washing_machine.c:355:13:Check_Lid_Open	1
+washing_machine.c:363:13:WashingMachine_LCD_Display	5
