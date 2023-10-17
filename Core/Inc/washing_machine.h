@@ -11,6 +11,10 @@
 #include "servomotor.h"
 #include "uart_management.h"
 #include "buzzer.h"
+#include "internal_rtc.h"
+#include "fnd4digit.h"
+
+#define LID_SAFTY_LIMIT 10
 
 enum Laundry_Mode
 {
@@ -24,6 +28,12 @@ enum START_STOP_FLAG
 {
 	STOP = 0,
 	START
+};
+
+enum FORWARD_BACKWARD_FLAG
+{
+	FORWARD = 0,
+	BACKWARD
 };
 
 void WashingMachine_Init(void);

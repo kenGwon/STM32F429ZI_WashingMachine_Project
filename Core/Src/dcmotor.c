@@ -9,8 +9,8 @@ extern volatile uint32_t TIM10_10ms_dcmotor_activate_time;
  */
 void DCmotor_Forward_Rotate(void)
 {
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, 1);
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 0);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_RESET);
 }
 
 /*
@@ -19,8 +19,8 @@ void DCmotor_Forward_Rotate(void)
  */
 void DCmotor_Backward_Rotate(void)
 {
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, 0);
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 1);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
 }
 
 /*
@@ -28,8 +28,8 @@ void DCmotor_Backward_Rotate(void)
  */
 void DCmotor_Break(void)
 {
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, 1);
-	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, 1);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
 }
 
 void DCmotor_Set_DutyCycle(uint16_t duty_cycle)

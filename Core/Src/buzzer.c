@@ -77,6 +77,72 @@ unsigned int happy_birthday[] =
 
 unsigned int duration[] = {1,1,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,2,1,1,2,2,2,2};
 
+uint32_t mode_complete_note[] =
+{
+	G4, C5, B4, A4, G4, E4, F4, G4, A4, D4, E4, F4, E4, G4,
+	G4, C5, B4, A4, G4, C5, C5, D5, C5, B4, A4, B4, C5
+};
+
+uint32_t mode_complete_rythm[] =
+{
+	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3,
+	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 6,
+};
+
+uint32_t mode_start_note[] =
+{
+	E4, G4, A4
+};
+
+uint32_t mode_start_rythm[] =
+{
+	1, 1, 1
+};
+
+
+void Mode_Start_Alarm(void)
+{
+	int divide_freq = 1600000;
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+
+	for (int i = 0; i < sizeof(mode_start_note)/sizeof(uint32_t); i++)
+	{
+		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / mode_start_note[i]);
+		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / mode_start_note[i] / 2);
+		HAL_Delay(100*mode_start_rythm[i]);
+		noTone();
+	}
+
+	HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4);
+	HAL_Delay(100);
+}
+
+
+void Mode_Complete_Alarm(void)
+{
+	int divide_freq = 1600000;
+
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+
+	for (int i = 0; i < sizeof(mode_complete_note)/sizeof(uint32_t); i++)
+	{
+		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / mode_complete_note[i]);
+		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / mode_complete_note[i] / 2);
+		HAL_Delay(200*mode_complete_rythm[i]);
+		noTone();
+	}
+
+	HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4);
+	HAL_Delay(1000);
+}
+
+
+
+
+
+/*
+ * desc:
+ * */
 void noTone(void)
  {
      htim5.Instance->CCR1=0;

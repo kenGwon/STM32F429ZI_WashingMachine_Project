@@ -1,2 +1,4 @@
-buzzer.c:80:6:noTone	1
-buzzer.c:86:6:buzzer_main	3
+buzzer.c:103:6:Mode_Start_Alarm	2
+buzzer.c:121:6:Mode_Complete_Alarm	2
+buzzer.c:146:6:noTone	1
+buzzer.c:152:6:buzzer_main	3

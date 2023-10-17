@@ -12,8 +12,8 @@ void get_rtc(void)
 	static RTC_TimeTypeDef oldTime; // 이전 시각의 정보를 담을 변수 (static을 붙여서 전역처럼 사용)
 	char lcd_buff[40];
 
-	HAL_RTC_GetDate(&hrtc, &my_systemDate, RTC_FORMAT_BCD);
 	HAL_RTC_GetTime(&hrtc, &my_systemTime, RTC_FORMAT_BCD);
+	HAL_RTC_GetDate(&hrtc, &my_systemDate, RTC_FORMAT_BCD);
 
 	if (oldTime.Seconds != my_systemTime.Seconds)
 	{

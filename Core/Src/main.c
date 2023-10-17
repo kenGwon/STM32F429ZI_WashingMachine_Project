@@ -105,11 +105,21 @@ extern void Ultrasonic_Processing(void);
 extern void Fan_Processing(void);
 #endif
 
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
+// ---------- call by SysTick_Handler of stm32f4xx_it.c ----------
+// ARM default timer
+// enter here every 1ms
+volatile int fnd1ms_counter = 0;
+void HAL_STSTICK_Handler(void)
+{
+	fnd1ms_counter++; // 1ms timer
+}
+// ---------- call by SysTick_Handler of stm32f4xx_it.c ----------
 
 
 //----------  printf start ----------
@@ -196,7 +206,6 @@ int main(void)
   I2C_LCD_Init();
 #endif
   // ============================== END for Fan_Machine.c ==============================
-
 
 
   WashingMachine_Init();
@@ -415,9 +424,9 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 0x9;
+  sTime.Hours = 0x8;
   sTime.Minutes = 0x38;
-  sTime.Seconds = 0x30;
+  sTime.Seconds = 0x15;
   sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
   sTime.StoreOperation = RTC_STOREOPERATION_RESET;
   if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
@@ -842,7 +851,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(DHT11_GPIO_Port, DHT11_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LD1_Pin|LD3_Pin|LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, LD1_Pin|FND_A_Pin|FND_B_Pin|FND_G_Pin
+                          |LD3_Pin|FND_DP_Pin|FND_C_Pin|FND_D_Pin
+                          |FND_E_Pin|FND_F_Pin|LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(ULTRASONIC_TRIGGER_GPIO_Port, ULTRASONIC_TRIGGER_Pin, GPIO_PIN_RESET);
@@ -852,6 +863,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(USB_PowerSwitchOn_GPIO_Port, USB_PowerSwitchOn_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, FND_D1_Pin|FND_D2_Pin|FND_D3_Pin|FND_D4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, LEDBAR0_Pin|LEDBAR1_Pin|LEDBAR2_Pin|LEDBAR3_Pin
@@ -870,8 +884,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DHT11_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LD1_Pin LD3_Pin LD2_Pin */
-  GPIO_InitStruct.Pin = LD1_Pin|LD3_Pin|LD2_Pin;
+  /*Configure GPIO pins : LD1_Pin FND_A_Pin FND_B_Pin FND_G_Pin
+                           LD3_Pin FND_DP_Pin FND_C_Pin FND_D_Pin
+                           FND_E_Pin FND_F_Pin LD2_Pin */
+  GPIO_InitStruct.Pin = LD1_Pin|FND_A_Pin|FND_B_Pin|FND_G_Pin
+                          |LD3_Pin|FND_DP_Pin|FND_C_Pin|FND_D_Pin
+                          |FND_E_Pin|FND_F_Pin|LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -915,6 +933,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(USB_OverCurrent_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : FND_D1_Pin FND_D2_Pin FND_D3_Pin FND_D4_Pin */
+  GPIO_InitStruct.Pin = FND_D1_Pin|FND_D2_Pin|FND_D3_Pin|FND_D4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LEDBAR0_Pin LEDBAR1_Pin LEDBAR2_Pin LEDBAR3_Pin
                            LEDBAR4_Pin LEDBAR5_Pin LEDBAR6_Pin LEDBAR7_Pin */

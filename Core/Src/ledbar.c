@@ -3,7 +3,7 @@
 extern volatile uint32_t TIM10_10ms_counter_ledbar;
 
 /*
- * desc: ledbar의 동작상태를 테스트 하기 위한 테스트함수
+ * desc: ledbar의 동작 테스트를 하기 위한 함수
  */
 void LEDbar_Test(void)
 {
@@ -39,19 +39,20 @@ void LEDbar_All_Off(void)
  */
 void LEDbar_On_Up(void)
 {
-	int i = 0;
+	static int i = 0;
 
-	LEDbar_All_Off();
-	TIM10_10ms_counter_ledbar = 0;
-
-	while (i < 8)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= 20)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 8)
 		{
-			TIM10_10ms_counter_ledbar = 0;
 			LEDbar_All_Off();
-			HAL_GPIO_WritePin(GPIOD, 0x01 << i++, 1);
+			i = 0;
 		}
+
+		LEDbar_All_Off();
+		HAL_GPIO_WritePin(GPIOD, 0x01 << i++, 1);
 	}
 }
 
@@ -60,19 +61,20 @@ void LEDbar_On_Up(void)
  */
 void LEDbar_On_Down(void)
 {
-	int i = 0;
+	static int i = 0;
 
-	LEDbar_All_Off();
-	TIM10_10ms_counter_ledbar = 0;
-
-	while (i < 8)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= 20)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 8)
 		{
-			TIM10_10ms_counter_ledbar = 0;
 			LEDbar_All_Off();
-			HAL_GPIO_WritePin(GPIOD, 0x80 >> i++, 1);
+			i = 0;
 		}
+
+		LEDbar_All_Off();
+		HAL_GPIO_WritePin(GPIOD, 0x80 >> i++, 1);
 	}
 }
 
@@ -81,18 +83,19 @@ void LEDbar_On_Down(void)
  */
 void LEDbar_Keepon_Up(void)
 {
-	int i = 0;
+	static int i = 0;
 
-	LEDbar_All_Off();
-	TIM10_10ms_counter_ledbar = 0;
-
-	while (i < 8)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= 20)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 8)
 		{
-			TIM10_10ms_counter_ledbar = 0;
-			HAL_GPIO_WritePin(GPIOD, 0x01 << i++, 1);
+			LEDbar_All_Off();
+			i = 0;
 		}
+
+		HAL_GPIO_WritePin(GPIOD, 0x00|(0x01 << i++), 1);
 	}
 }
 
@@ -101,18 +104,19 @@ void LEDbar_Keepon_Up(void)
  */
 void LEDbar_Keepon_Down(void)
 {
-	int i = 0;
+	static int i = 0;
 
-	LEDbar_All_Off();
-	TIM10_10ms_counter_ledbar = 0;
-
-	while (i < 8)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= 20)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 8)
 		{
-			TIM10_10ms_counter_ledbar = 0;
-			HAL_GPIO_WritePin(GPIOD, 0x80 >> i++, 1);
+			LEDbar_All_Off();
+			i = 0;
 		}
+
+		HAL_GPIO_WritePin(GPIOD, 0x00|(0x80 >> i++), 1);
 	}
 }
 
@@ -121,21 +125,21 @@ void LEDbar_Keepon_Down(void)
  */
 void LEDbar_Flower_On(void)
 {
-	int i = 0, delay = 30;
-	TIM10_10ms_counter_ledbar = 0;
+	static int i = 0;
 
-	LEDbar_All_Off();
-
-	while(i < 4)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= delay)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 4)
 		{
-			TIM10_10ms_counter_ledbar = 0;
-			HAL_GPIO_WritePin(GPIOD, 0x01 << (4 + i), 1);
-			HAL_GPIO_WritePin(GPIOD, 0x01 << (3 - i), 1);
-			i++;
-			delay += 10;
+			LEDbar_All_Off();
+			i = 0;
 		}
+
+		HAL_GPIO_WritePin(GPIOD, 0x08 >> i, 1);
+		HAL_GPIO_WritePin(GPIOD, 0x10 << i, 1);
+		i++;
 	}
 }
 
@@ -144,20 +148,20 @@ void LEDbar_Flower_On(void)
  */
 void LEDbar_Flower_Off(void)
 {
-	int i = 0, delay = 70;
-	TIM10_10ms_counter_ledbar = 0;
+	static int i = 0;
 
-	LEDbar_All_On();
-
-	while(i < 4)
+	if (TIM10_10ms_counter_ledbar >= 20)
 	{
-		if (TIM10_10ms_counter_ledbar >= delay)
+		TIM10_10ms_counter_ledbar = 0;
+
+		if (i == 4)
 		{
-			TIM10_10ms_counter_ledbar = 0;
-			HAL_GPIO_WritePin(GPIOD, 0x01 << (0 + i), 0);
-			HAL_GPIO_WritePin(GPIOD, 0x01 << (7 - i), 0);
-			i++;
-			delay -= 10;
+			LEDbar_All_Off();
+			i = 0;
 		}
+
+		HAL_GPIO_WritePin(GPIOD, 0x01 << i, 1);
+		HAL_GPIO_WritePin(GPIOD, 0x80 >> i, 1);
+		i++;
 	}
 }
