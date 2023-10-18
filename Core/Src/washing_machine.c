@@ -117,9 +117,9 @@ void WashingMachine_Processing(void)
  */
 static void Idle_Mode_Laundry(void)
 {
-	open_WashingMachine_Lid();
-	Mode_Complete_Alarm(); // 이걸 여기서도 불르고 있어야 로직이 맞게 작동함..
+	Mode_Complete_Alarm();
 
+	open_WashingMachine_Lid();
 	DCmotor_Break();
 	LEDbar_All_Off();
 	FND4digit_off();
@@ -146,7 +146,6 @@ static void Wash_Mode_Laundry(void)
 
 
 	/************************BEGIN 기본 동작 부분************************/
-	close_WashingMachine_Lid();
 	Mode_Complete_Alarm();
 
 	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
@@ -163,6 +162,7 @@ static void Wash_Mode_Laundry(void)
 	{
 		DCmotor_Break();
 		LEDbar_All_Off();
+		open_WashingMachine_Lid();
 		FND4digit_off();
 	}
 	else if (wash_mode_start_stop_flag == START && wash_remain_time > 0)
@@ -197,8 +197,9 @@ static void Wash_Mode_Laundry(void)
 			DCmotor_Backward_Rotate();
 		}
 
-		LEDbar_Flower_On();
+		close_WashingMachine_Lid();
 		FND4digit_time_display(wash_remain_time);
+		LEDbar_Flower_On();
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -207,6 +208,7 @@ static void Wash_Mode_Laundry(void)
 
 		DCmotor_Break();
 		LEDbar_All_Off();
+		open_WashingMachine_Lid();
 		FND4digit_off();
 
 		// 완료가 되었다면 그냥 세탁 셋팅 화면을 다시 출력
@@ -301,9 +303,7 @@ static void Rinse_Mode_Laundry(void)
 	static uint8_t rinse_mode_start_stop_flag = STOP;
 
 	/************************BEGIN 기본 동작 부분************************/
-	close_WashingMachine_Lid();
 	Mode_Complete_Alarm();
-
 
 	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
 	if (Check_Lid_Open())
@@ -319,6 +319,7 @@ static void Rinse_Mode_Laundry(void)
 	{
 		DCmotor_Break();
 		LEDbar_All_Off();
+		open_WashingMachine_Lid();
 		FND4digit_off();
 
 	}
@@ -337,8 +338,10 @@ static void Rinse_Mode_Laundry(void)
 
 		DCmotor_Forward_Rotate();
 
-		LEDbar_On_Up();
 		FND4digit_time_display(rinse_remain_time);
+		close_WashingMachine_Lid();
+		LEDbar_On_Up();
+
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -347,6 +350,7 @@ static void Rinse_Mode_Laundry(void)
 
 		DCmotor_Break();
 		LEDbar_All_Off();
+		open_WashingMachine_Lid();
 		FND4digit_off();
 
 		// 완료가 되었다면 그냥 헹굼 셋팅 화면을 다시 출력
@@ -441,7 +445,6 @@ static void Spin_Mode_Laundry(void)
 
 
 	/************************BEGIN 기본 동작 부분************************/
-	close_WashingMachine_Lid();
 	Mode_Complete_Alarm();
 
 	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
@@ -458,6 +461,7 @@ static void Spin_Mode_Laundry(void)
 		DCmotor_Break();
 		LEDbar_All_Off();
 		FND4digit_off();
+		open_WashingMachine_Lid();
 	}
 	else if (spin_mode_start_stop_flag == START && spin_remain_time > 0)
 	{
@@ -484,6 +488,7 @@ static void Spin_Mode_Laundry(void)
 
 		LEDbar_Keepon_Up();
 		FND4digit_time_display(spin_remain_time);
+		close_WashingMachine_Lid();
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -494,6 +499,7 @@ static void Spin_Mode_Laundry(void)
 		DCmotor_Break();
 		LEDbar_All_Off();
 		FND4digit_off();
+		open_WashingMachine_Lid();
 
 		// 완료가 되었다면 그냥 탈수 셋팅 화면을 다시 출력
 		LCD_Command(CLEAR_DISPLAY);
