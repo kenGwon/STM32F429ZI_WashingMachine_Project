@@ -40,7 +40,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/timer_management.h ../Core/Inc/ultrasonic.h \
  ../Core/Inc/dcmotor.h ../Core/Inc/servomotor.h \
  ../Core/Inc/uart_management.h ../Core/Inc/buzzer.h \
- ../Core/Inc/internal_rtc.h ../Core/Inc/i2c_lcd.h ../Core/Inc/fnd4digit.h
+ ../Core/Inc/washing_machine.h ../Core/Inc/internal_rtc.h \
+ ../Core/Inc/i2c_lcd.h ../Core/Inc/fnd4digit.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -90,6 +91,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/servomotor.h:
 ../Core/Inc/uart_management.h:
 ../Core/Inc/buzzer.h:
+../Core/Inc/washing_machine.h:
 ../Core/Inc/internal_rtc.h:
 ../Core/Inc/i2c_lcd.h:
 ../Core/Inc/fnd4digit.h:

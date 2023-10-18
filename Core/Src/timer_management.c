@@ -14,6 +14,7 @@ volatile uint32_t TIM10_10ms_dcmotor_activate_time = 0; // for dcmotor.c
 volatile uint32_t TIM10_10ms_WM_wash_timer = 0;
 volatile uint32_t TIM10_10ms_WM_rinse_timer = 0;
 volatile uint32_t TIM10_10ms_WM_spin_timer = 0;
+volatile uint32_t TIM10_10ms_WM_buzzer_timer = 0;
 
 volatile int32_t ultrasonic_distance; // for ultrasonic.c // 상승엣지부터 하강엣지까지 펄스가 몇번 카운트 되었는지 그 횟수를 담아둘 전역변수
 volatile uint8_t one_cycle_capture_finish_flag = 0; // for ultrasonic.c // 0은 초음파 거리 측정 미완 상태, 1은 초음파 거리 측정 완료 상태 [플래그변수]
@@ -41,6 +42,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		TIM10_10ms_WM_wash_timer++;
 		TIM10_10ms_WM_rinse_timer++;
 		TIM10_10ms_WM_spin_timer++;
+		TIM10_10ms_WM_buzzer_timer++;
 	}
 }
 

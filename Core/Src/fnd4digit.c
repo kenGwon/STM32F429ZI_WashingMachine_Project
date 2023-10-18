@@ -124,28 +124,15 @@ void FND4digit_time_display(uint32_t time)
 		HAL_GPIO_WritePin(FND_COM_PORT,FND_digit[i], GPIO_PIN_SET);
 		HAL_GPIO_WritePin(FND_DATA_PORT, FND[i], GPIO_PIN_RESET);
 #else // common 캐소우드 CL5642AH30
-
-		if (i % 2 == 0) // FND의 첫째자리 셋째자리
-		{
-			if (FND[i] == 0) // 0이면 아예 출력 안함
-			{
-
-			}
-			else
-			{
-
-			}
-		}
-
 		HAL_GPIO_WritePin(FND_COM_PORT,FND_digit[i], GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(FND_DATA_PORT, FND[i], GPIO_PIN_SET);
-
-
 #endif
+
+
+
 		i++;   // 다음 display할 FND를 가리킨다.
 		i %= 4;
 	}
-
 }
 
 

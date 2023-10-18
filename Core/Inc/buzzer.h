@@ -2,6 +2,7 @@
 #define _BUZZER_H_
 
 #include "main.h"
+#include "washing_machine.h"
 
 enum notes
 {
@@ -16,9 +17,9 @@ enum notes
 	D5 = 587
 };
 
-void noTone(void);
-void buzzer_main(void);
-void Mode_Start_Alarm(void);
+void Buzzer_Turn_On(void);
+void Buzzer_Turn_Off(void);
 void Mode_Complete_Alarm(void);
+void buzzer_test(void);
 
 #endif /*_BUZZER_H_*/

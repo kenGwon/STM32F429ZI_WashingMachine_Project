@@ -56,136 +56,141 @@
  CCRx = 199
  */
 extern TIM_HandleTypeDef htim5;
+extern TIM_HandleTypeDef htim9;
 
+extern volatile uint32_t TIM10_10ms_WM_buzzer_timer;
+extern volatile uint8_t mode_complete_alarm_stop_start_flag;
 
-
-// 학교종이 땡땡땡
-unsigned int school_bell[] =
+// 학교종이 땡땡땡 노래 음계
+uint32_t school_bell[] =
 {
-	G4,G4,A4,A4,G4,G4,E4,G4,G4,E4,E4,D4,
-	G4,G4,A4,A4,G4,G4,E4,G4,E4,D4,E4,C4
+	G4, G4, A4, A4, G4, G4, E4, G4, G4, E4, E4, D4,
+	G4, G4, A4, A4, G4, G4, E4, G4, E4, D4, E4, C4
 };
 
-
-// happybirthday to you
-unsigned int happy_birthday[] =
+// happybirthday to you 노래 음계
+uint32_t happy_birthday[] =
 {
-	 C4,C4,D4,C4,F4,E4,C4,C4,D4,C4,G4,
-	 F4,C4,C4,C5,A4,F4,E4,D4,B4,B4,A4,
-	 A4,G4,F4
+	 C4, C4, D4, C4, F4, E4, C4, C4, D4, C4, G4,
+	 F4, C4, C4, C5, A4, F4, E4, D4, B4, B4, A4,
+	 A4, G4, F4
 };
 
-unsigned int duration[] = {1,1,2,2,2,2,1,1,2,2,2,2,1,1,2,2,2,2,2,1,1,2,2,2,2};
+// happybirthday to you 노래 리듬
+uint32_t happy_birthday_rythm[] = {
+		1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2,
+		2, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2,
+		2, 2, 2
+};
 
+// 세탁기 동작 완료 노래 음계
 uint32_t mode_complete_note[] =
 {
 	G4, C5, B4, A4, G4, E4, F4, G4, A4, D4, E4, F4, E4, G4,
 	G4, C5, B4, A4, G4, C5, C5, D5, C5, B4, A4, B4, C5
 };
-
+ // 세탁기 동작 완료 노래 리듬
 uint32_t mode_complete_rythm[] =
 {
 	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3,
 	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 6,
 };
 
-uint32_t mode_start_note[] =
-{
-	E4, G4, A4
-};
-
-uint32_t mode_start_rythm[] =
-{
-	1, 1, 1
-};
-
-
-void Mode_Start_Alarm(void)
-{
-	int divide_freq = 1600000;
-	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
-
-	for (int i = 0; i < sizeof(mode_start_note)/sizeof(uint32_t); i++)
-	{
-		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / mode_start_note[i]);
-		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / mode_start_note[i] / 2);
-		HAL_Delay(100*mode_start_rythm[i]);
-		noTone();
-	}
-
-	HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4);
-	HAL_Delay(100);
-}
-
-
-void Mode_Complete_Alarm(void)
-{
-	int divide_freq = 1600000;
-
-	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
-
-	for (int i = 0; i < sizeof(mode_complete_note)/sizeof(uint32_t); i++)
-	{
-		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / mode_complete_note[i]);
-		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / mode_complete_note[i] / 2);
-		HAL_Delay(200*mode_complete_rythm[i]);
-		noTone();
-	}
-
-	HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4);
-	HAL_Delay(1000);
-}
-
-
-
-
 
 /*
- * desc:
- * */
-void noTone(void)
- {
-     htim5.Instance->CCR1=0;
-     HAL_Delay(50);
- }
-
-void buzzer_main(void)
+ * desc: 부저에서 소리가 나오도록 duty cycle을 설정해준다.
+ */
+void Buzzer_Turn_On(void)
 {
-   int divide_freq = 1600000;
+	return __HAL_TIM_SET_COMPARE(&htim9, TIM_CHANNEL_1, 200);
+}
 
-  while (1)
-  {
+/*
+ * desc: 부저에서 소리가 안 나오도록 duty cycle을 설정해준다.
+ */
+void Buzzer_Turn_Off(void)
+{
+	return __HAL_TIM_SET_COMPARE(&htim9, TIM_CHANNEL_1, 0);
+}
 
-	// 학교 종이 땡땡땡
-    for (int i=0; i < 24; i++)
-    {
-		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / school_bell[i]);
-		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / school_bell[i] / 2);
+/*
+ * desc: 세탁/헹굼/탈수가 모두 완료되면 부저로 노래를 출력한다.
+ */
+void Mode_Complete_Alarm(void)
+{
+	static uint32_t i = 0;
+	int divide_freq = 1600000;
+
+	if (mode_complete_alarm_stop_start_flag == START)
+	{
+		Buzzer_Turn_On();
+		__HAL_TIM_SET_AUTORELOAD(&htim9, divide_freq / mode_complete_note[i]);
+
+		// 리듬 단위 1은 0.2초라고 가정
+		if (TIM10_10ms_WM_buzzer_timer > 20 * mode_complete_rythm[i])
+		{
+			TIM10_10ms_WM_buzzer_timer = 0;
+			i++;
+		}
+
+		if (i >= sizeof(mode_complete_note)/sizeof(uint32_t))
+		{
+			i = 0;
+			mode_complete_alarm_stop_start_flag = STOP;
+			Buzzer_Turn_Off();
+		}
+	}
+	else
+	{
+		i = 0;
+		Buzzer_Turn_Off();
+	}
+}
+
+/*
+ * desc: 부저가 올바르게 작동하는지 테스트하기 위한 함수
+ */
+void buzzer_test(void)
+{
+	int divide_freq = 160000;
+
+	HAL_TIM_PWM_Start(&htim9, TIM_CHANNEL_1) ;
+
+	while (1)
+	{
+
+printf("first song start\n");
+
+		// happy birthday to you
+		for (int i=0; i < 25; i++)
+		{
+			__HAL_TIM_SET_AUTORELOAD(&htim9, divide_freq / happy_birthday[i]);
+			__HAL_TIM_SET_COMPARE(&htim9, TIM_CHANNEL_1, divide_freq / happy_birthday[i] / 2);
+			HAL_Delay(300*happy_birthday_rythm[i]);
+		}
+
+		/* 음악 끝나고 3초 후 시작 */
+		HAL_TIM_PWM_Stop(&htim9, TIM_CHANNEL_1) ;
+		HAL_Delay(3000);
+		HAL_TIM_PWM_Start(&htim9, TIM_CHANNEL_1) ;
+
+
+printf("second song start\n");
+
+
+		// 학교 종이 땡땡땡
+		for (int i=0; i < 24; i++)
+		{
+		__HAL_TIM_SET_AUTORELOAD(&htim9, divide_freq / school_bell[i]);
+		__HAL_TIM_SET_COMPARE(&htim9, TIM_CHANNEL_1, divide_freq / school_bell[i] / 2);
 		HAL_Delay(500);
-		noTone();  /* note 소리 내고 50ms 끊어주기 */
-    }
+		}
 
-    /* 음악 끝나고 3초 후 시작*/
-    HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4) ;
-    HAL_Delay(3000);
-    HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4) ;
-
-    // happy birthday to you
-    for (int i=0; i < 25; i++)
-    {
-		__HAL_TIM_SET_AUTORELOAD(&htim5, divide_freq / happy_birthday[i]);
-		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, divide_freq / happy_birthday[i] / 2);
-		HAL_Delay(300*duration[i]);
-		noTone();
-    }
-
-    /* 음악 끝나고 3초 후 시작 */
-    HAL_TIM_PWM_Stop(&htim5, TIM_CHANNEL_4) ;
-    HAL_Delay(3000);
-    HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4) ;
-
-
-  }
+		/* 음악 끝나고 3초 후 시작*/
+		HAL_TIM_PWM_Stop(&htim9, TIM_CHANNEL_1);
+		HAL_Delay(3000);
+		HAL_TIM_PWM_Start(&htim9, TIM_CHANNEL_1);
+	}
 }
 
 #if 0

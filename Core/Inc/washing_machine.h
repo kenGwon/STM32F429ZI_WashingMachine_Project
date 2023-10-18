@@ -14,7 +14,7 @@
 #include "internal_rtc.h"
 #include "fnd4digit.h"
 
-#define LID_SAFTY_LIMIT 10
+#define LID_SAFTY_LIMIT 10 // cm
 
 enum Laundry_Mode
 {
@@ -24,7 +24,7 @@ enum Laundry_Mode
 	SPIN_MODE
 };
 
-enum START_STOP_FLAG
+enum STOP_START_FLAG
 {
 	STOP = 0,
 	START

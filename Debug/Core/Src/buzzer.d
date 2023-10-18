@@ -34,7 +34,12 @@ Core/Src/buzzer.o: ../Core/Src/buzzer.c ../Core/Inc/buzzer.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
+ ../Core/Inc/washing_machine.h ../Core/Inc/button.h ../Core/Inc/ledbar.h \
+ ../Core/Inc/I2C_lcd.h ../Core/Inc/DHT11.h ../Core/Inc/timer_management.h \
+ ../Core/Inc/ultrasonic.h ../Core/Inc/dcmotor.h ../Core/Inc/servomotor.h \
+ ../Core/Inc/uart_management.h ../Core/Inc/buzzer.h \
+ ../Core/Inc/internal_rtc.h ../Core/Inc/i2c_lcd.h ../Core/Inc/fnd4digit.h
 ../Core/Inc/buzzer.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -73,3 +78,17 @@ Core/Src/buzzer.o: ../Core/Src/buzzer.c ../Core/Inc/buzzer.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h:
+../Core/Inc/washing_machine.h:
+../Core/Inc/button.h:
+../Core/Inc/ledbar.h:
+../Core/Inc/I2C_lcd.h:
+../Core/Inc/DHT11.h:
+../Core/Inc/timer_management.h:
+../Core/Inc/ultrasonic.h:
+../Core/Inc/dcmotor.h:
+../Core/Inc/servomotor.h:
+../Core/Inc/uart_management.h:
+../Core/Inc/buzzer.h:
+../Core/Inc/internal_rtc.h:
+../Core/Inc/i2c_lcd.h:
+../Core/Inc/fnd4digit.h:

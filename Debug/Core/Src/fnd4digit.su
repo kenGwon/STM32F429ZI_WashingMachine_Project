@@ -3,5 +3,5 @@
 ../Core/Src/fnd4digit.c:66:13:FND_update	16	static
 ../Core/Src/fnd4digit.c:80:13:FND4digit_time_update	24	static
 ../Core/Src/fnd4digit.c:105:6:FND4digit_time_display	16	static
-../Core/Src/fnd4digit.c:141:6:fnd4digit_sec_clock	8	static
-../Core/Src/fnd4digit.c:177:6:fnd4digit_main	16	static
+../Core/Src/fnd4digit.c:143:6:fnd4digit_sec_clock	8	static
+../Core/Src/fnd4digit.c:179:6:fnd4digit_main	16	static

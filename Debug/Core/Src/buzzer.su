@@ -1,4 +1,4 @@
-../Core/Src/buzzer.c:103:6:Mode_Start_Alarm	16	static
-../Core/Src/buzzer.c:121:6:Mode_Complete_Alarm	16	static
-../Core/Src/buzzer.c:146:6:noTone	8	static
-../Core/Src/buzzer.c:152:6:buzzer_main	24	static
+../Core/Src/buzzer.c:103:6:Buzzer_Turn_On	4	static
+../Core/Src/buzzer.c:111:6:Buzzer_Turn_Off	4	static
+../Core/Src/buzzer.c:119:6:Mode_Complete_Alarm	16	static
+../Core/Src/buzzer.c:153:6:buzzer_test	24	static
