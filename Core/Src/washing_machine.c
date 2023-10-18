@@ -148,16 +148,6 @@ static void Wash_Mode_Laundry(void)
 	/************************BEGIN 기본 동작 부분************************/
 	Mode_Complete_Alarm();
 
-	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
-	if (Check_Lid_Open())
-	{
-		mode_complete_alarm_stop_start_flag = STOP;
-		WashingMachine_curr_status = 0;
-		LCD_Command(CLEAR_DISPLAY);
-		Idle_Mode_Display();
-	}
-
-
 	if (wash_mode_start_stop_flag == STOP)
 	{
 		DCmotor_Break();
@@ -200,6 +190,15 @@ static void Wash_Mode_Laundry(void)
 		close_WashingMachine_Lid();
 		FND4digit_time_display(wash_remain_time);
 		LEDbar_Flower_On();
+
+		// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
+		if (Check_Lid_Open())
+		{
+			mode_complete_alarm_stop_start_flag = STOP;
+			WashingMachine_curr_status = 0;
+			LCD_Command(CLEAR_DISPLAY);
+			Idle_Mode_Display();
+		}
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -305,16 +304,6 @@ static void Rinse_Mode_Laundry(void)
 	/************************BEGIN 기본 동작 부분************************/
 	Mode_Complete_Alarm();
 
-	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
-	if (Check_Lid_Open())
-	{
-		mode_complete_alarm_stop_start_flag = STOP;
-		WashingMachine_curr_status = 0;
-		LCD_Command(CLEAR_DISPLAY);
-		Idle_Mode_Display();
-	}
-
-
 	if (rinse_mode_start_stop_flag == STOP)
 	{
 		DCmotor_Break();
@@ -342,6 +331,14 @@ static void Rinse_Mode_Laundry(void)
 		close_WashingMachine_Lid();
 		LEDbar_On_Up();
 
+		// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
+		if (Check_Lid_Open())
+		{
+			mode_complete_alarm_stop_start_flag = STOP;
+			WashingMachine_curr_status = 0;
+			LCD_Command(CLEAR_DISPLAY);
+			Idle_Mode_Display();
+		}
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -447,15 +444,6 @@ static void Spin_Mode_Laundry(void)
 	/************************BEGIN 기본 동작 부분************************/
 	Mode_Complete_Alarm();
 
-	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
-	if (Check_Lid_Open())
-	{
-		WashingMachine_curr_status = 0;
-		LCD_Command(CLEAR_DISPLAY);
-		Idle_Mode_Display();
-	}
-
-
 	if (spin_mode_start_stop_flag == STOP)
 	{
 		DCmotor_Break();
@@ -489,6 +477,14 @@ static void Spin_Mode_Laundry(void)
 		LEDbar_Keepon_Up();
 		FND4digit_time_display(spin_remain_time);
 		close_WashingMachine_Lid();
+
+		// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
+		if (Check_Lid_Open())
+		{
+			WashingMachine_curr_status = 0;
+			LCD_Command(CLEAR_DISPLAY);
+			Idle_Mode_Display();
+		}
 	}
 	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
 	{
@@ -594,7 +590,7 @@ static bool Check_Lid_Open(void)
 {
 	int32_t distance;
 
-#if 0 // 코드 디버깅 편리성을 위해 잠시 비활성화
+#if 1 // 코드 디버깅 편리성을 위해 활성/비활성화
 
 	if (TIM10_10ms_counter_ultrasonic >= LID_OPEN_CHECK_TERM)
 	{
@@ -607,7 +603,7 @@ static bool Check_Lid_Open(void)
 			distance = ultrasonic_distance;
 			distance = distance * 0.034 / 2;
 
-			if (distance > LID_SAFTY_LIMIT)
+			if (distance > LID_OPEN_SAFTY_LIMIT)
 			{
 				return true;
 			}
