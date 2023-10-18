@@ -1,8 +1,8 @@
-../Core/Src/fan_machine.c:66:6:Fan_Processing	8	static
-../Core/Src/fan_machine.c:89:6:Fan_Manual_Control	8	static
-../Core/Src/fan_machine.c:206:6:Fan_Auto_Control	8	static
-../Core/Src/fan_machine.c:289:6:Clear_Fan_LCD_Display	48	static
-../Core/Src/fan_machine.c:305:6:Fan_LCD_Display	56	static
-../Core/Src/fan_machine.c:360:6:Fan_Rotate_Direction_LED_Control	16	static
-../Core/Src/fan_machine.c:385:6:Fan_LEDbar_Control	24	static
-../Core/Src/fan_machine.c:404:10:Get_Current_ChannelControlRegister_Value	4	static
+../Core/Src/fan_machine.c:64:6:Fan_Processing	8	static
+../Core/Src/fan_machine.c:87:6:Fan_Manual_Control	8	static
+../Core/Src/fan_machine.c:204:6:Fan_Auto_Control	8	static
+../Core/Src/fan_machine.c:287:6:Clear_Fan_LCD_Display	48	static
+../Core/Src/fan_machine.c:303:6:Fan_LCD_Display	56	static
+../Core/Src/fan_machine.c:358:6:Fan_Rotate_Direction_LED_Control	16	static
+../Core/Src/fan_machine.c:383:6:Fan_LEDbar_Control	24	static
+../Core/Src/fan_machine.c:402:10:Get_Current_ChannelControlRegister_Value	4	static

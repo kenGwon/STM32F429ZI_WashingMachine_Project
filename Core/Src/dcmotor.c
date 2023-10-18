@@ -41,7 +41,3 @@ uint16_t DCmotor_Get_DutyCycle(void)
 {
 	return __HAL_TIM_GET_COMPARE(&htim4, TIM_CHANNEL_1);
 }
-
-
-
-

@@ -43,8 +43,6 @@ Fan_Processing();
 // ==========================================================================================
 
 
-
-
 #include "fan_machine.h"
 
 extern TIM_HandleTypeDef htim4;

@@ -1,4 +1,4 @@
-buzzer.c:103:6:Buzzer_Turn_On	1
-buzzer.c:111:6:Buzzer_Turn_Off	1
-buzzer.c:119:6:Mode_Complete_Alarm	4
-buzzer.c:153:6:buzzer_test	3
+buzzer.c:102:6:Buzzer_Turn_On	1
+buzzer.c:110:6:Buzzer_Turn_Off	1
+buzzer.c:118:6:Mode_Complete_Alarm	4
+buzzer.c:152:6:buzzer_test	3

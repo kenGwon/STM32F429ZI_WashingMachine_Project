@@ -2,4 +2,4 @@
 ../Core/Src/internal_rtc.c:45:6:set_rtc	40	static
 ../Core/Src/internal_rtc.c:70:9:bcd2dec	24	static
 ../Core/Src/internal_rtc.c:80:9:dec2bcd	24	static
-../Core/Src/internal_rtc.c:95:6:set_time_button_UI	104	static
+../Core/Src/internal_rtc.c:94:6:set_time_button_UI	104	static

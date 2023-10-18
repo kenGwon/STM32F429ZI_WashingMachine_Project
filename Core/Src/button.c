@@ -1,11 +1,9 @@
 #include "button.h"
 
-
 // 각 버튼의 현재 상태를 저장하는 배열: 외부에서 특정 버튼의 현재 상태를 접근하고 싶다면 이 배열로 접근하면 됨ㄴ
 char button_status[BUTTON_NUMBER] = {
 		BUTTON_RELEASE, BUTTON_RELEASE, BUTTON_RELEASE, BUTTON_RELEASE, BUTTON_RELEASE // 버튼 5개의 최초 상태를 뗀 상태로 최기화
 };
-
 
 /*
  * desc: 푸시 버튼의 채터링(chattering) 현상을 고려하여, 함수가 실행된 순간 버튼의 상태가 RELEASE상태인지 PRESS상태인지 정확한 값을 전달한다.

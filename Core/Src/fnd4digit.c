@@ -2,10 +2,8 @@
 
 extern volatile int fnd1ms_counter;  // fnd1ms
 
-
 static void FND_update_test(unsigned int value);
 static void FND4digit_time_update(uint32_t time);
-
 
 uint16_t FND_digit[4] =
 {
@@ -27,8 +25,6 @@ uint32_t FND_font[10] =
 };
 
 uint16_t FND[4];    // FND에 쓰기 위한 값을 준비하는 변수
-
-
 
 /*
  * desc: FND의 4자리를 모두 끈다.
@@ -271,4 +267,3 @@ void fnd4digit_test(void)
 #endif
 	}
 }
-

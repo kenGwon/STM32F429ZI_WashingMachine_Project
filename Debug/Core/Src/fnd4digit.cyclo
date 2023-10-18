@@ -1,7 +1,7 @@
-fnd4digit.c:36:6:FND4digit_off	1
-fnd4digit.c:51:6:FND4digit_on	1
-fnd4digit.c:67:13:FND4digit_time_update	1
-fnd4digit.c:92:6:FND4digit_time_display	12
-fnd4digit.c:174:6:fnd4digit_sec_clock	3
-fnd4digit.c:209:13:FND_update_test	1
-fnd4digit.c:222:6:fnd4digit_test	3
+fnd4digit.c:32:6:FND4digit_off	1
+fnd4digit.c:47:6:FND4digit_on	1
+fnd4digit.c:63:13:FND4digit_time_update	1
+fnd4digit.c:88:6:FND4digit_time_display	12
+fnd4digit.c:170:6:fnd4digit_sec_clock	3
+fnd4digit.c:205:13:FND_update_test	1
+fnd4digit.c:218:6:fnd4digit_test	3

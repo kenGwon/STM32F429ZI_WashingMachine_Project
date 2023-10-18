@@ -37,6 +37,7 @@ void I2C_LCD_Test(void)
 #endif
 }
 
+//
 void LCD_Command(uint8_t command)
 {
 

@@ -2,4 +2,4 @@ internal_rtc.c:10:6:get_rtc	3
 internal_rtc.c:45:6:set_rtc	1
 internal_rtc.c:70:9:bcd2dec	1
 internal_rtc.c:80:9:dec2bcd	1
-internal_rtc.c:95:6:set_time_button_UI	6
+internal_rtc.c:94:6:set_time_button_UI	6

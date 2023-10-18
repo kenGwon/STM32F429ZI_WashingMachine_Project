@@ -1,7 +1,7 @@
-../Core/Src/fnd4digit.c:36:6:FND4digit_off	8	static
-../Core/Src/fnd4digit.c:51:6:FND4digit_on	8	static
-../Core/Src/fnd4digit.c:67:13:FND4digit_time_update	24	static
-../Core/Src/fnd4digit.c:92:6:FND4digit_time_display	24	static
-../Core/Src/fnd4digit.c:174:6:fnd4digit_sec_clock	8	static
-../Core/Src/fnd4digit.c:209:13:FND_update_test	16	static
-../Core/Src/fnd4digit.c:222:6:fnd4digit_test	16	static
+../Core/Src/fnd4digit.c:32:6:FND4digit_off	8	static
+../Core/Src/fnd4digit.c:47:6:FND4digit_on	8	static
+../Core/Src/fnd4digit.c:63:13:FND4digit_time_update	24	static
+../Core/Src/fnd4digit.c:88:6:FND4digit_time_display	24	static
+../Core/Src/fnd4digit.c:170:6:fnd4digit_sec_clock	8	static
+../Core/Src/fnd4digit.c:205:13:FND_update_test	16	static
+../Core/Src/fnd4digit.c:218:6:fnd4digit_test	16	static

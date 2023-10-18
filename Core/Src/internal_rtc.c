@@ -91,7 +91,6 @@ uint8_t dec2bcd(uint8_t byte)
 // button1: 분 정보를 변경하는 버튼. 0분~59분 (up count)
 // button2: 초 정보를 변경하는 버튼. 0초~59초 (up count)
 // button3: 변경 완료 현재까지 변경된 내용을 저장
-//
 void set_time_button_UI(void)
 {
 	static uint8_t hour = 0, minute = 0, second = 0;

@@ -96,7 +96,6 @@ uint32_t mode_complete_rythm[] =
 	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 6,
 };
 
-
 /*
  * desc: 부저에서 소리가 나오도록 duty cycle을 설정해준다.
  */

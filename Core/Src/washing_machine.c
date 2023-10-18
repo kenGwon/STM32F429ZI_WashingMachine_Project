@@ -22,7 +22,6 @@ extern volatile uint32_t TIM10_10ms_counter_DHT11;
 extern volatile int32_t ultrasonic_distance;
 extern volatile uint8_t one_cycle_capture_finish_flag;
 
-
 volatile uint8_t mode_complete_alarm_stop_start_flag = STOP;
 
 static uint8_t WashingMachine_curr_status = IDLE_MODE;
@@ -114,7 +113,7 @@ void WashingMachine_Processing(void)
 }
 
 /*
- * desc:
+ * desc: 대기 상태에 관련된 동작을 실행하는 함수이다.
  */
 static void Idle_Mode_Laundry(void)
 {
@@ -580,130 +579,6 @@ static void Spin_Mode_Laundry(void)
 	/************************END 버튼 입력 인터럽트 부분************************/
 }
 
-///*
-// * desc: "세탁/헹굼/탈수" 중 "세탁"에 관련된 동작을 실행하는 함수이다.
-// *       세탁모드에서 드럼통 모터는 70%의 고정 duty cycle 출력으로 작동한다.
-// */
-//static void Auto_Mode_Laundry(void)
-//{
-//	static uint8_t auto_mode_start_stop_flag = STOP;
-//	static uint8_t dcmotor_forward_backward_flag = FORWARD;
-//	static uint32_t wash_remain_time = 0;
-//	static RTC_TimeTypeDef wash_complete_time = {0};
-//
-//	/************************BEGIN 기본 동작 부분************************/
-//	WashingMachine_3Mode_Display(wash_mode_start_stop_flag, wash_remain_time, wash_complete_time);
-//	close_WashingMachine_Lid();
-//
-//	// 뚜껑이 열려있으면 동작을 중지하고 idle 화면으로 이동
-//	if (Check_Lid_Open())
-//	{
-//		WashingMachine_curr_status = 0;
-//		LCD_Command(CLEAR_DISPLAY);
-//	}
-//
-//
-//	if (wash_mode_start_stop_flag == STOP)
-//	{
-//		DCmotor_Break();
-//	}
-//	else if (wash_mode_start_stop_flag == START && wash_remain_time > 0)
-//	{
-//		// 남은시간은 자동으로 1초씩 감소
-//		if (TIM10_10ms_WM_wash_timer > 100)
-//		{
-//			TIM10_10ms_WM_wash_timer = 0;
-//			wash_remain_time--;
-//			if (wash_remain_time < 0) {wash_remain_time = 0;}
-//
-//			if (dcmotor_forward_backward_flag == FORWARD)
-//			{
-//				dcmotor_forward_backward_flag = BACKWARD;
-//			}
-//			else
-//			{
-//				dcmotor_forward_backward_flag = FORWARD;
-//			}
-//		}
-//
-//		// 세탁모드에서 드럼통을 앞뒤로 흔들어주기 위해서..
-//		if (dcmotor_forward_backward_flag == 0)
-//		{
-//			DCmotor_Forward_Rotate();
-//		}
-//		else
-//		{
-//			DCmotor_Backward_Rotate();
-//		}
-//
-//		LEDbar_Flower_On();
-//		FND4digit_time_display(wash_remain_time);
-//	}
-//	else // 플래그는 start이지만 남은시간이 0이하가 된 경우 여기로 빠짐
-//	{
-//		DCmotor_Break();
-//		LEDbar_All_Off();
-//		FND4digit_off();
-//		wash_mode_start_stop_flag = STOP;
-//		Mode_Complete_Alarm();
-//	}
-//	/************************END 기본 동작 부분************************/
-//
-//	/************************BEGIN 버튼 입력 인터럽트 부분************************/
-//	// 세탁 모드 상태를 기억한 상태로 다음 모드로 이동
-//	if (Get_Button(BUTTON0_GPIO_Port, BUTTON0_Pin, 0) == BUTTON_PRESS)
-//	{
-//		WashingMachine_curr_status++;
-//		WashingMachine_curr_status %= 4;
-//		LCD_Command(CLEAR_DISPLAY); // 버튼을 누르는 순간마다 clear display해줘서 쓰레기값 방지
-//	}
-//
-//	// 세탁에 소요할 시간을 10초 증가시킨다.
-//	if (Get_Button(BUTTON1_GPIO_Port, BUTTON1_Pin, 1) == BUTTON_PRESS)
-//	{
-//		wash_remain_time += 60;
-//		LCD_Command(CLEAR_DISPLAY); // 버튼을 누르는 순간마다 clear display해줘서 쓰레기값 방지
-//	}
-//
-//	// 세탁에 소요할 시간을 1초 증가시킨다.
-//	if (Get_Button(BUTTON2_GPIO_Port, BUTTON2_Pin, 2) == BUTTON_PRESS)
-//	{
-//		wash_remain_time += 1;
-//		LCD_Command(CLEAR_DISPLAY); // 버튼을 누르는 순간마다 clear display해줘서 쓰레기값 방지
-//	}
-//
-//	// 동작 시간을 설정 완료했다면, 세탁기 구동을 시작한다.
-//	if (Get_Button(BUTTON3_GPIO_Port, BUTTON3_Pin, 3) == BUTTON_PRESS)
-//	{
-//		wash_mode_start_stop_flag = START;
-//
-//		HAL_RTC_GetTime(&hrtc, &wash_complete_time, RTC_FORMAT_BCD);
-//		wash_complete_time.Hours += dec2bcd(wash_remain_time / 3600);
-//		wash_complete_time.Minutes += dec2bcd((wash_remain_time % 3600) / 60);
-//		wash_complete_time.Seconds += dec2bcd((wash_remain_time % 3600) % 60);
-//
-//		LCD_Command(CLEAR_DISPLAY); // 버튼을 누르는 순간마다 clear display해줘서 쓰레기값 방지
-//
-////		Mode_Start_Alarm();
-//	}
-//
-//	// 세탁 모드를 즉시 중지하고 세탁모드를 초기화해준다.
-//	if (Get_Button(BUTTON4_GPIO_Port, BUTTON4_Pin, 4) == BUTTON_PRESS)
-//	{
-//		WashingMachine_curr_status = IDLE_MODE;
-//		wash_mode_start_stop_flag = STOP;
-//		dcmotor_forward_backward_flag = 0;
-//		wash_remain_time = 0;
-//		wash_complete_time.Hours = dec2bcd(0);
-//		wash_complete_time.Minutes = dec2bcd(0);
-//		wash_complete_time.Seconds = dec2bcd(0);
-//
-//		LCD_Command(CLEAR_DISPLAY); // 버튼을 누르는 순간마다 clear display해줘서 쓰레기값 방지
-//	}
-//	/************************END 버튼 입력 인터럽트 부분************************/
-//}
-
-
 /*
  * desc: 세탁기의 뚜껑이 열린상태인지 닫힌 상태인지 파악한다. 뚜껑의 개폐 상태는 1초에 한번씩 체크한다.
  *       초음파센서와 뚜껑의 거리가 10cm 이하이면 닫힌 것으로 간주하고, 10cm 초과이면 열린 것으로 간주한다.
@@ -911,4 +786,3 @@ static void Spin_Mode_Running_display(RTC_TimeTypeDef complete_time)
 	Move_Cursor(1, 0);
 	LCD_String(lcd_buff_2);
 }
-
