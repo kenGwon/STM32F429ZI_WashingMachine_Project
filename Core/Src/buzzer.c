@@ -86,13 +86,13 @@ uint32_t happy_birthday_rythm[] = {
 // 세탁기 동작 완료 노래 음계
 uint32_t mode_complete_note[] =
 {
-	G4, C5, B4, A4, G4, E4, F4, G4, A4, D4, E4, F4, E4, G4,
+	G4, G4, C5, B4, A4, G4, E4, F4, G4, A4, D4, E4, F4, E4, G4,
 	G4, C5, B4, A4, G4, C5, C5, D5, C5, B4, A4, B4, C5
 };
  // 세탁기 동작 완료 노래 리듬
 uint32_t mode_complete_rythm[] =
 {
-	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3,
+	3, 3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 3, 3,
 	3, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 1, 6,
 };
 

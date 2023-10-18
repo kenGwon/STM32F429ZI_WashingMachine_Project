@@ -14,7 +14,10 @@
 #include "internal_rtc.h"
 #include "fnd4digit.h"
 
-#define LID_SAFTY_LIMIT 10 // cm
+#define LID_OPEN_CHECK_TERM 100
+#define LID_OPEN_SAFTY_LIMIT 10 // cm
+#define MOTOR_HEAT_CHECK_TERM 1000
+#define MOTOTR_HEAT_SAFTY_LIMIT 70 // 섭씨
 
 enum Laundry_Mode
 {

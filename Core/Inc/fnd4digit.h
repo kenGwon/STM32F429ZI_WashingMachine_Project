@@ -24,7 +24,7 @@ void FND4digit_off(void);
 void FND4digit_on(void);
 void FND4digit_time_display(uint32_t time);
 void fnd4digit_sec_clock(void);
-void fnd4digit_main(void);
+void fnd4digit_test(void);
 
 #endif /*_FND4DIGIT_H_*/
 

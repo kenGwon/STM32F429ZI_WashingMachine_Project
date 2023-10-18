@@ -1,3 +1,50 @@
+// =================== main.c의 선언부에서 외부 extern 받아오는 곳에 있던 것 ===================
+#if 0
+extern uint8_t rx_data;
+extern uint8_t bt_rx_data;
+
+extern void DHT11_Init(void);
+extern void I2C_LCD_Init(void);
+
+extern void PC_Command_Processing(void);
+extern void BT_Command_Processing(void);
+extern void DHT11_Processing(void);
+extern void Ultrasonic_Processing(void);
+extern void Fan_Processing(void);
+#endif
+// ==========================================================================================
+
+// ======================== main.c의 main()함수의 while(1) 전에 들어있던 것 =======================
+#if 0
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1); //for servomotor PWM control
+HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1); // for count pulse(InputCapture between rising edge & falling edge)
+HAL_TIM_PWM_Start_IT(&htim4, TIM_CHANNEL_1); // for dcmotor PWM control
+HAL_TIM_Base_Start_IT(&htim10);
+HAL_TIM_Base_Start_IT(&htim11);
+
+HAL_UART_Receive_IT(&huart3, &rx_data, 1); // activate interrupt from RX huart3
+HAL_UART_Receive_IT(&huart6, &bt_rx_data, 1); // activate interrupt from RX huart6
+
+DHT11_Init();
+I2C_LCD_Init();
+#endif
+// ==========================================================================================
+
+// ======================== main.c의 main()함수의 while(1) 안에 들어있던 것 =======================
+#if 0
+PC_Command_Processing();
+BT_Command_Processing();
+
+DHT11_Processing();
+Ultrasonic_Processing();
+
+Fan_Processing();
+#endif
+// ==========================================================================================
+
+
+
+
 #include "fan_machine.h"
 
 extern TIM_HandleTypeDef htim4;
