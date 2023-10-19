@@ -8,7 +8,7 @@
 
 ## 프로젝트 시연 영상
 (아래 이미지를 클릭하시면 유튜브로 이동합니다.)<br>
-[![프로젝트 시연영상](http://img.youtube.com/vi/8z03FfVUGQs/0.jpg)](https://youtu.be/8z03FfVUGQs)<br>
+[![프로젝트 시연영상](http://img.youtube.com/vi/58fGxxrwpnQ/0.jpg)](https://youtu.be/58fGxxrwpnQ)<br>
 <br>
 
 
