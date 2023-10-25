@@ -18,5 +18,5 @@
 
 ## 프로젝트 발표 영상
 (아래 이미지를 클릭하시면 구글 슬라이드로 이동합니다.)<br>
-[![프로젝트 발표자료](http://img.youtube.com/watch?v=McwAPPPH1eI/0.jpg)](https://www.youtube.com/watch?v=McwAPPPH1eI)<br>
+[![프로젝트 발표자료](http://img.youtube.com/vi/McwAPPPH1eI/0.jpg)](https://youtu.be/McwAPPPH1eI)<br>
 <br>
