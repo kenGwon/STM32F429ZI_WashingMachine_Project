@@ -11,8 +11,12 @@
 [![프로젝트 시연영상](http://img.youtube.com/vi/58fGxxrwpnQ/0.jpg)](https://youtu.be/58fGxxrwpnQ)<br>
 <br>
 
-
 ## 프로젝트 발표 자료
 (아래 이미지를 클릭하시면 구글 슬라이드로 이동합니다.)<br>
 [![프로젝트 발표자료](./project_ppt_thumbnail.jpg)](https://docs.google.com/presentation/d/10V333uApeK11jBF7PNYokLzSHVcmj0B7Nhg3YjQDHO4/edit?usp=sharing)<br>
+<br>
+
+## 프로젝트 발표 영상
+(아래 이미지를 클릭하시면 구글 슬라이드로 이동합니다.)<br>
+[![프로젝트 발표자료](https://www.youtube.com/watch?v=McwAPPPH1eI/0.jpg)](https://www.youtube.com/watch?v=McwAPPPH1eI)<br>
 <br>
